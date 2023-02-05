@@ -26,4 +26,15 @@ class HomeApi {
     });
     return response;
   }
+
+  Future<Response> getAirPollution() async {
+    final position = await getPosition();
+    final Response response = await _dioHelper.getAirPollution({
+      'lon': position.longitude,
+      'lat': position.latitude,
+      'appid': DioHelper.apiKey,
+      'lang': 'ar',
+    });
+    return response;
+  }
 }
