@@ -6,7 +6,7 @@ import 'package:sinu_guide/constants/app_constants.dart';
 import 'package:sinu_guide/constants/app_icons.dart';
 
 class WeatherInfoTile extends StatelessWidget {
-  final int value;
+  final num value;
   final String title;
   final String iconPath;
   const WeatherInfoTile({
@@ -59,7 +59,7 @@ class WeatherInfoTile extends StatelessWidget {
                   child: SvgPicture.asset(
                     iconPath,
                     color: Colors.white,
-                    height: 25.sp,
+                    height: 25.h,
                   ),
                 ),
                 decoration: BoxDecoration(

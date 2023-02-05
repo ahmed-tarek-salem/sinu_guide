@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sinu_guide/constants/app_icons.dart';
-import 'package:sinu_guide/home/widgets/weather_info_tile.dart';
+import 'package:sinu_guide/home/ui/widgets/weather_info_tile.dart';
+import 'package:sinu_guide/models/weather_response_model.dart';
 
 class WeatherInfoList extends StatelessWidget {
+  final WeatherResponseModel? weatherResponseModel;
   const WeatherInfoList({
+    required this.weatherResponseModel,
     super.key,
   });
 
@@ -15,21 +18,21 @@ class WeatherInfoList extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const WeatherInfoTile(
+            WeatherInfoTile(
               title: 'سرعة الرياح',
-              value: 15,
+              value: weatherResponseModel?.wind?.speed?.toDouble() ?? 0,
               iconPath: AppIcons.windSpeed,
             ),
-            SizedBox(width: 10.w),
-            const WeatherInfoTile(
+            SizedBox(width: 5.w),
+            WeatherInfoTile(
               title: 'الحرارة',
-              value: 15,
+              value: weatherResponseModel?.main?.temp?.toDouble() ?? 0,
               iconPath: AppIcons.temp,
             ),
-            SizedBox(width: 10.w),
-            const WeatherInfoTile(
+            SizedBox(width: 5.w),
+            WeatherInfoTile(
               title: 'الرطوبة',
-              value: 15,
+              value: weatherResponseModel?.main?.humidity?.toDouble() ?? 0,
               iconPath: AppIcons.humidity,
             )
           ],
@@ -38,11 +41,12 @@ class WeatherInfoList extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const WeatherInfoTile(
+            WeatherInfoTile(
               title: 'ضغط الجيوب الأنفية',
-              value: 15,
+              value: weatherResponseModel?.main?.pressure?.toDouble() ?? 0,
               iconPath: AppIcons.nose,
             ),
+            SizedBox(width: 10.w),
             const WeatherInfoTile(
               title: 'الغبار',
               value: 15,

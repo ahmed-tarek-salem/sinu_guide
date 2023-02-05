@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sinu_guide/home/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:sinu_guide/home/home_provider.dart';
+import 'package:sinu_guide/home/ui/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +19,16 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Sinu Guide',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(fontFamily: 'Changa'),
-          home: const Directionality(
-            textDirection: TextDirection.rtl,
-            child: HomeScreen(),
+        return ChangeNotifierProvider(
+          create: (context) => HomeProvider(),
+          child: MaterialApp(
+            title: 'Sinu Guide',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(fontFamily: 'Changa'),
+            home: const Directionality(
+              textDirection: TextDirection.rtl,
+              child: HomeScreen(),
+            ),
           ),
         );
       },
